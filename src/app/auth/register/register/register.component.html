@@ -1,1 +1,39 @@
-<p>register works!</p>
+<form style="width: 70%; margin: auto;" [formGroup]="registerForm" (ngSubmit)="submitFormData()">
+
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" class="form-control" formControlName="username">
+        <span *ngIf="registerControl.username.errors && registerControl.username.touched">
+            <span *ngIf="registerControl.username.errors?.required">
+                <p class="text-danger">Username field is required</p>
+            </span>
+        </span>
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email">
+        <span *ngIf="registerControl.email.errors && registerControl.email.touched">
+            <span *ngIf="registerControl.email.errors?.required">
+                <p class="text-danger">Email field is required</p>
+            </span>
+            <span *ngIf="registerControl.email.errors?.email">
+                <p class="text-danger">Please enter valid email</p>
+            </span>
+        </span>
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password">
+        <span *ngIf="registerControl.password.errors && registerControl.password.touched">
+            <span *ngIf="registerControl.password.errors?.required">
+                <p class="text-danger">Username field is required</p>
+            </span>
+        </span>
+    </div>
+
+
+
+    <button [disabled]="registerControl.password.errors || registerControl.username.errors" class="btn btn-success" type="submit">Register</button>
+</form>

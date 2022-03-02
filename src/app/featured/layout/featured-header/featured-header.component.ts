@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/login/service/auth.service';
 
 @Component({
   selector: 'app-featured-header',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeaturedHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService:AuthService,public router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout()
+  {
+    this.authService.removeToken()
+    this.router.navigate(['/auth/login'])
   }
 
 }
